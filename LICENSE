@@ -1,10 +1,18 @@
 MIT License
 
+<<<<<<< HEAD
 Copyright (c) 2026 Presently Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction restriction, including without limitation the rights
+=======
+Copyright (c) 2026 rj033065-hub
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+>>>>>>> f396fa0449cce855d32832e9f2c1cae529f45efa
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
