@@ -27,7 +27,7 @@ class SurveyService:
         survey = await self.survey_repo.get_by_id(db, survey_id)
         if not survey:
             raise NotFoundException("Survey not found")
-        if survey.user_id and user_id and survey.user_id != user_id:
+        if survey.user_id and (not user_id or survey.user_id != user_id):
             raise ForbiddenException("Not authorized to modify this survey")
 
         update_data = update_in.model_dump(exclude_unset=True)
@@ -39,7 +39,7 @@ class SurveyService:
         survey = await self.survey_repo.get_by_id(db, survey_id)
         if not survey:
             raise NotFoundException("Survey not found")
-        if survey.user_id and user_id and survey.user_id != user_id:
+        if survey.user_id and (not user_id or survey.user_id != user_id):
             raise ForbiddenException("Not authorized to access this survey")
         return survey
 

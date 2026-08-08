@@ -14,9 +14,7 @@ class RecommendationRepository(BaseRepository[AIRecommendation]):
     async def get_by_id_with_items(self, db: AsyncSession, rec_id: UUID) -> Optional[AIRecommendation]:
         result = await db.execute(
             select(AIRecommendation)
-            .options(
-                selectinload(AIRecommendation.items).selectinload(AIRecommendationItem.gift_item)
-            )
+            .options(selectinload(AIRecommendation.items))
             .where(AIRecommendation.id == rec_id)
         )
         return result.scalars().first()
@@ -24,9 +22,7 @@ class RecommendationRepository(BaseRepository[AIRecommendation]):
     async def get_by_survey_id(self, db: AsyncSession, survey_id: UUID) -> Optional[AIRecommendation]:
         result = await db.execute(
             select(AIRecommendation)
-            .options(
-                selectinload(AIRecommendation.items).selectinload(AIRecommendationItem.gift_item)
-            )
+            .options(selectinload(AIRecommendation.items))
             .where(AIRecommendation.survey_id == survey_id)
         )
         return result.scalars().first()
@@ -36,9 +32,7 @@ class RecommendationRepository(BaseRepository[AIRecommendation]):
     ) -> List[AIRecommendation]:
         result = await db.execute(
             select(AIRecommendation)
-            .options(
-                selectinload(AIRecommendation.items).selectinload(AIRecommendationItem.gift_item)
-            )
+            .options(selectinload(AIRecommendation.items))
             .where(AIRecommendation.user_id == user_id)
             .order_by(AIRecommendation.created_at.desc())
             .offset(skip)
@@ -49,9 +43,7 @@ class RecommendationRepository(BaseRepository[AIRecommendation]):
     async def get_by_share_token(self, db: AsyncSession, share_token: str) -> Optional[AIRecommendation]:
         result = await db.execute(
             select(AIRecommendation)
-            .options(
-                selectinload(AIRecommendation.items).selectinload(AIRecommendationItem.gift_item)
-            )
+            .options(selectinload(AIRecommendation.items))
             .where(AIRecommendation.share_token == share_token)
         )
         return result.scalars().first()

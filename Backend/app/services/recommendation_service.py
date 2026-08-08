@@ -134,6 +134,8 @@ class RecommendationService:
         rec = await self.recommendation_repo.get_by_id_with_items(db, rec_id)
         if not rec:
             raise NotFoundException("Recommendation not found.")
+        if rec.user_id and (not user_id or rec.user_id != user_id):
+            raise ForbiddenException("Not authorized to access this recommendation.")
         return rec
 
     async def get_by_share_token(self, db: AsyncSession, share_token: str) -> AIRecommendation:
