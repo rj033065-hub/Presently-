@@ -6,8 +6,9 @@ import { Tag as CategoryIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CategoryChipProps {
-  name: string;
-  slug: string;
+  name?: string;
+  slug?: string;
+  category?: { name: string; slug: string };
   isActive?: boolean;
   onClick?: () => void;
   className?: string;
@@ -16,10 +17,13 @@ interface CategoryChipProps {
 export function CategoryChip({
   name,
   slug,
+  category,
   isActive = false,
   onClick,
   className,
 }: CategoryChipProps) {
+  const catName = category?.name || name || '';
+  const catSlug = category?.slug || slug || '';
   const content = (
     <span
       onClick={onClick}
@@ -32,7 +36,7 @@ export function CategoryChip({
       )}
     >
       <CategoryIcon className="w-3 h-3 text-current opacity-80" />
-      <span>{name}</span>
+      <span>{catName}</span>
     </span>
   );
 
@@ -40,5 +44,5 @@ export function CategoryChip({
     return content;
   }
 
-  return <Link href={`/community/category/${slug}`}>{content}</Link>;
+  return <Link href={`/community/category/${catSlug}`}>{content}</Link>;
 }

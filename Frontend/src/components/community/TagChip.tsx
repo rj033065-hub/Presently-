@@ -6,8 +6,9 @@ import { Hash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface TagChipProps {
-  name: string;
-  slug: string;
+  name?: string;
+  slug?: string;
+  tag?: { name: string; slug: string };
   isActive?: boolean;
   onClick?: () => void;
   className?: string;
@@ -16,10 +17,13 @@ interface TagChipProps {
 export function TagChip({
   name,
   slug,
+  tag,
   isActive = false,
   onClick,
   className,
 }: TagChipProps) {
+  const tagName = tag?.name || name || '';
+  const tagSlug = tag?.slug || slug || '';
   const content = (
     <span
       onClick={onClick}
@@ -32,7 +36,7 @@ export function TagChip({
       )}
     >
       <Hash className="w-3 h-3 opacity-60" />
-      <span>{name}</span>
+      <span>{tagName}</span>
     </span>
   );
 
@@ -40,5 +44,5 @@ export function TagChip({
     return content;
   }
 
-  return <Link href={`/community/tag/${slug}`}>{content}</Link>;
+  return <Link href={`/community/tag/${tagSlug}`}>{content}</Link>;
 }

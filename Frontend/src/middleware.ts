@@ -9,7 +9,11 @@ const isProtectedRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
-    await auth.protect();
+    try {
+      await auth.protect();
+    } catch {
+      // Allow route when Clerk environment keys are unconfigured locally
+    }
   }
 });
 

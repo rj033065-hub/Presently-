@@ -4,7 +4,7 @@ import React from 'react';
 
 interface LoadingSkeletonProps {
   count?: number;
-  type?: 'card' | 'detail' | 'sidebar';
+  type?: 'card' | 'detail' | 'sidebar' | 'grid';
 }
 
 export function LoadingSkeleton({ count = 3, type = 'card' }: LoadingSkeletonProps) {
